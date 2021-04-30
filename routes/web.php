@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Login\LoginController as Login;
 use App\Http\Controllers\TokenController as Token;
+use App\Http\Controllers\Admin\DocController as Doc;
 
 
 /*
@@ -18,18 +19,16 @@ use App\Http\Controllers\TokenController as Token;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('login');
 
 
 Route::get('login/google', [Login::class , 'loginGoogle']);
 Route::get('google-callback', [Login::class , 'googleCallback']);
 
-
+Route::get('documentation',[Doc::class, 'docs']);
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
     Route::group(['middleware' => ['isAdmin']], function () {
-
-
 
     });
 });
