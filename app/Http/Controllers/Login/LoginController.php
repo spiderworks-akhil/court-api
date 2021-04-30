@@ -48,7 +48,16 @@ class LoginController extends Controller
 
     public function login(Request $request){
         // email and token needs to pass here
-        $user = file_get_contents('https://www.googleapis.com/oauth2/v3/userinfo?access_token='.$request->token);
+        try{
+            $user = file_get_contents('https://www.googleapis.com/oauth2/v3/userinfo?access_token='.$request->token);
+        }catch(\Exception $e){
+            $response = [
+                'status' => false,
+                'token' => 'Invalid token, Failed to fetch user details'
+            ];
+            return response($response, 403);
+        }
+
         $user = json_decode($user);
         if(!empty($user->email)){
 
