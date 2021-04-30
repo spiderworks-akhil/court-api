@@ -39,7 +39,11 @@ class LoginController extends Controller
                 $u->is_google_login = 1+$u->google_login;
                 $u->google_token = $user->token;
                 $u->save();
-                return redirect('/');
+                if($u->is_admin ==1){
+                    return redirect('admin/dashboard');
+                }else{
+                    return redirect('/');
+                }
             }
         }
         session()->flash('error','Google login failed, please try other options');
@@ -108,5 +112,10 @@ class LoginController extends Controller
 
 
         return response($response, 200);
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect('/');
     }
 }
