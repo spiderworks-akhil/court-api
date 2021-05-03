@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <!-- START card -->
         <div class="col-md-12" style="margin-bottom: 20px;" align="right">
-            <span class="page-heading">All Courts</span>
+            <span class="page-heading">All Days</span>
             <div >
                 <div class="btn-group">
                     <a href="{{route($route.'.create')}}" class="btn btn-success"><i class="fa fa-pencil"></i> Create new
@@ -22,7 +22,6 @@
                         <th class="nodisplay"></th>
                         <th class="table-width-10">ID</th>
                         <th class="table-width-120">Name</th>
-                        <th class="nosort nosearch table-width-10">Status</th>
                         <th class="nosort nosearch table-width-10">Edit</th>
                         <th class="nosort nosearch table-width-10">Delete</th>
                     </tr>
@@ -31,7 +30,6 @@
                         <th class="nosort nosearch table-width-10"></th>
                         <th class="table-width-10 nosort nosearch"></th>
                         <th class="table-width-120 searchable-input">Name</th>
-                        <th class="nosort nosearch table-width-10"></th>
                         <th class="nosort nosearch table-width-10"></th>
                         <th class="nosort nosearch table-width-10"></th>
                     </tr>
@@ -54,7 +52,6 @@
             {data: 'updated_at', name: 'updated_at'},
             {data: null, name: 'id'},
             {data: 'name', name: 'name'},
-            {data: 'status', name: 'status'},
             {data: 'action_edit', name: 'action_edit'},
             {data: 'action_delete', name: 'action_delete'}
         ];

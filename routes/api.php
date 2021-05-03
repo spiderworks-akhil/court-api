@@ -27,6 +27,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::get('court-list',[Court::class,'get_court_list']);
+    Route::get('court-slots',[Court::class,'get_court_slots']);
 
 
 });
