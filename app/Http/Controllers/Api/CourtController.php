@@ -37,8 +37,14 @@ class CourtController extends Controller
         $date = $request->date;
         $court_id = $request->court_id;
         $court = Court::select('name')->find($court_id);
-        $day = Carbon::parse($date)->format('l');
-        $day = Day::where('name',$day)->first();
+        if(!$court){
+            $response = [
+                'staus' => false,
+                'message' => 'Court not found',
+            ];
+        }
+        $d = Carbon::parse($date)->format('l');
+        $day = Day::where('name',$d)->first();
         $holiday = Holiday::where('date',$date)->first();
 
         if($holiday){
@@ -58,6 +64,7 @@ class CourtController extends Controller
 
         $response = [
             'staus' => true,
+            'day' => $d,
             'court' => $court,
             'data' => $slots
         ];
