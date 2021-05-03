@@ -42,6 +42,7 @@ class CourtController extends Controller
                 'staus' => false,
                 'message' => 'Court not found',
             ];
+            return response($response, 200);
         }
         $d = Carbon::parse($date)->format('l');
         $day = Day::where('name',$d)->first();
@@ -52,6 +53,14 @@ class CourtController extends Controller
         }else{$surcharge =0;}
 
         $slots = Slots::select('slot_number','price','is_slot_open','status')->where('day_id',$day->id)->where('court_id',$court_id)->orderby('slot_number','ASC')->get();
+
+        if(count($slots) == 0){
+            $response = [
+                'staus' => false,
+                'message' => 'No slots added, Please contact directly'
+            ];
+            return response($response, 200);
+        }
 
         $f = Carbon::parse('00:00:00 1-1-2020');
         $t = Carbon::parse('00:30:00 1-1-2020');
