@@ -51,6 +51,7 @@ class LoginController extends Controller
     }
 
     public function login(Request $request){
+
         // email and token needs to pass here
         try{
             // $user = file_get_contents('https://www.googleapis.com/oauth2/v3/userinfo?access_token='.$request->token);

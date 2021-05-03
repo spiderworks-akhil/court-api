@@ -2,32 +2,35 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="container">
-
-            <div class="col-md-12 p-0"  align="right" style="margin-bottom: 20px; ">
-                <span class="page-heading">All Project</span>
-                <div >
-                    <div class="btn-group">
-                        <a href="{{route($route.'.create')}}" class="btn btn-success" title="Create new type"><i class="fa fa-pencil"></i> Create new</a>
-                    </div>
+        <!-- START card -->
+        <div class="col-md-12" style="margin-bottom: 20px;" align="right">
+            <span class="page-heading">All Blogs</span>
+            <div >
+                <div class="btn-group">
+                    <a href="{{route($route.'.create')}}" class="btn btn-success"><i class="fa fa-pencil"></i> Create new
+                    </a>
                 </div>
             </div>
-            <!-- START card -->
+        </div>
+
+        <div class="col-lg-12">
             <div class="card card-borderless padding-15">
                 <table class="table table-hover demo-table-search table-responsive-block" id="datatable"
                        data-datatable-ajax-url="{{ route($route.'.index') }}" >
                     <thead id="column-search">
                     <tr>
-                        <th class="table-width-10 text-center">ID</th>
+                        <th class="nodisplay"></th>
+                        <th class="table-width-10">ID</th>
                         <th class="table-width-120">Name</th>
-                        <th class="nosort nosearch table-width-10 text-center">Status</th>
-                        <th class="nosort nosearch table-width-10 text-center">Edit</th>
-                        <th class="nosort nosearch table-width-10 text-center">Delete</th>
+                        <th class="nosort nosearch table-width-10">Status</th>
+                        <th class="nosort nosearch table-width-10">Edit</th>
+                        <th class="nosort nosearch table-width-10">Delete</th>
                     </tr>
 
                     <tr>
+                        <th class="nosort nosearch table-width-10"></th>
                         <th class="table-width-10 nosort nosearch"></th>
-                        <th class="searchable-input">Name</th>
+                        <th class="table-width-120 searchable-input">Name</th>
                         <th class="nosort nosearch table-width-10"></th>
                         <th class="nosort nosearch table-width-10"></th>
                         <th class="nosort nosearch table-width-10"></th>
@@ -40,15 +43,16 @@
 
                 </table>
             </div>
-            <!-- END card -->
         </div>
+        <!-- END card -->
     </div>
 @endsection
 @section('bottom')
 
     <script>
         var my_columns = [
-            {data: 'id', name: 'id'},
+            {data: 'updated_at', name: 'updated_at'},
+            {data: null, name: 'id'},
             {data: 'name', name: 'name'},
             {data: 'status', name: 'status'},
             {data: 'action_edit', name: 'action_edit'},
