@@ -25,7 +25,7 @@ class Court extends BaseModel
     protected $table = 'court';
 
 
-    protected $fillable = array('name','tagline','status','image_id','features','location');
+    protected $fillable = array('name','tagline','status','image_id','features','location','facilities','restrictions','longitude','timings','latitude');
 
     protected $dates = ['created_at','updated_at'];
 

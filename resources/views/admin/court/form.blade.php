@@ -85,15 +85,66 @@
                                                 </div>
                                             </div>
 
+                                            <div class="col-md-12">
+                                                <div class="row column-seperation padding-5">
+                                                    <div class="form-group form-group-default">
+                                                        <label>Contact number</label>
+                                                        <input name="location" class="form-control" value="{{$obj->location}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-6">
+                                                <div class="row column-seperation padding-5">
+                                                    <div class="form-group form-group-default">
+                                                        <label>Location - latitude</label>
+                                                        <input name="latitude" class="form-control" value="{{$obj->latitude}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="row column-seperation padding-5">
+                                                    <div class="form-group form-group-default">
+                                                        <label>Location - longitude</label>
+                                                        <input name="longitude" class="form-control" value="{{$obj->longitude}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+
 
                                             <div class="col-md-12">
                                                 <div class="row column-seperation padding-5">
                                                     <div class="form-group form-group-default">
-                                                        <label>location</label>
-                                                        <textarea name="location" class="form-control" id="map" rows="5">{{$obj->location}}</textarea>
+                                                        <label>Timings</label>
+                                                        <input name="timings" class="form-control" value="{{$obj->timings}}">
                                                     </div>
                                                 </div>
                                             </div>
+
+
+                                            <div class="col-md-6">
+                                                <div class="row column-seperation padding-5">
+                                                    <div class="form-group form-group-default">
+                                                        <label>Restrictions</label>
+                                                        <textarea name="restrictions" class="form-control" cols="30" rows="10">{{$obj->restrictions}}</textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="row column-seperation padding-5">
+                                                    <div class="form-group form-group-default">
+                                                        <label>Facilities</label>
+                                                        <textarea name="facilities"  class="form-control" id="" cols="30" rows="10">{{$obj->facilities}}</textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            
+
+
 
                                             <div class="col-md-6">
                                                 <div class="row">
@@ -107,7 +158,7 @@
                                                                 <img class="card-img-top padding-20" src="{{asset('webadmin/img/add_image.png')}}">
                                                             @endif
                                                         </a>
-                                                        <input type="hidden" name="image_id" id="mediaId_banner_image" value="{{$obj->banner_image_id}}">
+                                                        <input type="hidden" name="image_id" id="mediaId_banner_image" value="{{$obj->image_id}}">
                                                     </div>
                                                 </div>
                                             </div>
