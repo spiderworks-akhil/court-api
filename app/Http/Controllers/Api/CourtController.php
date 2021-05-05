@@ -293,4 +293,15 @@ class CourtController extends Controller
 
 
     }
+
+    public function get_my_booking(Request $request){
+        $user = $request->user();
+        $bookings =  Booking::where('user_id',$user->id)->get();
+        $response = [
+            'staus' => true,
+            'user' => $user,
+            'data' => $bookings
+        ];
+        return response($response, 200);
+    }
 }
