@@ -29,5 +29,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('court-list',[Court::class,'get_court_list']);
     Route::get('court-slots',[Court::class,'get_court_slots']);
 
+    Route::post('book-court',[Court::class,'book_court']);
+
 
 });

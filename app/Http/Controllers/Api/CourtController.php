@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Booking;
 use App\Models\Court;
 use App\Models\Day;
 use App\Models\Holiday;
+use App\Models\SlotHistory;
 use App\Models\Slots;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -50,7 +52,7 @@ class CourtController extends Controller
 
         if($holiday){
             $surcharge = $holiday->surcharge;
-        }else{$surcharge =0;}
+        }else{$holiday=null;$surcharge =0;}
 
         $slots = Slots::select('slot_number','price','is_slot_open','status')->where('day_id',$day->id)->where('court_id',$court_id)->orderby('slot_number','ASC')->get();
 
@@ -65,14 +67,18 @@ class CourtController extends Controller
         $f = Carbon::parse('00:00:00 1-1-2020');
         $t = Carbon::parse('00:30:00 1-1-2020');
 
-        $slots->map(function ($item)use($surcharge,$f,$t){
+        $slots->map(function ($item)use($surcharge,$f,$t,$holiday){
             $item->price = $item->price+$surcharge;
             $item->slot_time = $f->addMinutes(30)->format('H:i').' - '.$t->addMinutes(30)->format('H:i');
+            if(!empty($holiday)){
+                $item->is_slot_open = $holiday->is_business_open;
+            }
             return $item;
         });
 
         $response = [
             'staus' => true,
+            'holiday' => $holiday,
             'day' => $d,
             'court' => $court,
             'data' => $slots
@@ -80,6 +86,198 @@ class CourtController extends Controller
 
 
         return response($response, 200);
+
+    }
+
+    public function book_court(Request $request){
+
+        $user = $request->user();
+            if(!$user){
+                $response = [
+                    'staus' => false,
+                    'message' => 'User not found!'
+                ];
+                return response($response, 200);
+            }
+
+        $court = Court::find($request->court_id);
+            if(!$court){
+                $response = [
+                    'staus' => false,
+                    'message' => 'Court not found!'
+                ];
+                return response($response, 200);
+            }
+
+            if(empty($request->start_slot) || empty($request->end_slot) || empty($request->start_slot_date)  || empty($request->end_slot_date) ){
+                $response = [
+                    'staus' => false,
+                    'message' => 'Slot not valid'
+                ];
+                return response($response, 200);
+            }
+
+
+
+
+
+        $booking = new Booking();
+        $booking->user_id = $user->id;
+        $booking->court_id = $court->id;
+        $booking->start_slot = $request->start_slot;
+        $booking->end_slot = $request->end_slot;
+
+        $booking->start_slot_date = $request->start_slot_date;
+        $booking->end_slot_date = $request->end_slot_date;
+
+        $slots = $this->slots($request->start_slot,$request->end_slot,$request->start_slot_date,$request->end_slot_date,$court->id);
+
+        $total = 0;
+        foreach ($slots as $obj){
+            $slot_check = SlotHistory::where('slot',$obj['slot'])->where('court_id',$court->id)->where('date',$obj['date'])->first();
+            if($slot_check){
+                $response = [
+                    'staus' => false,
+                    'message' => 'Some of slots not available, please check the availability of the slots'
+                ];
+                return response($response, 200);
+            }
+            $total += $obj['price'];
+        }
+
+
+        $booking->total = $total;
+        $booking->discount = $request->discount? $request->discount : 0;
+        $booking->paid_amount = $request->paid_amout? $request->paid_amout : 0;
+        $booking->status = 1;
+        $booking->approved_by = null;
+        $booking->price_calculation = json_encode($slots);
+        $booking->save();
+
+        foreach ($slots as $obj){
+            $slot_check = SlotHistory::where('slot',$obj['slot'])->where('court_id',$obj['slot'])->where('date',$obj['date'])->first();
+            if($slot_check){
+                $response = [
+                    'staus' => false,
+                    'message' => 'Some of slots not available, please check the availability of the slots'
+                ];
+                return response($response, 200);
+            }else{
+                $history = new SlotHistory();
+                $history->booking_id = $booking->id;
+                $history->slot = $obj['slot'];
+                $history->date = $obj['date'];
+                $history->court_id = $court->id;
+                $history->save();
+
+            }
+        }
+
+        $response = $response = [
+            'staus' => false,
+            'message' => 'Booking created',
+            'data' => $booking
+        ];
+
+
+        return response($response, 200);
+    }
+
+    public function price_of_slot($slot,$date,$court){
+        $court_id = $court;
+        $court = Court::select('name')->find($court_id);
+        if(!$court){
+            $response = [
+                'staus' => false,
+                'message' => 'Court not found',
+            ];
+            return response($response, 200);
+        }
+        $d = Carbon::parse($date)->format('l');
+        $day = Day::where('name',$d)->first();
+        $holiday = Holiday::where('date',$date)->first();
+
+        if($holiday){
+            $surcharge = $holiday->surcharge;
+        }else{
+            $holiday=null;$surcharge =0;
+        }
+
+        $slot = Slots::select('slot_number','price','is_slot_open','status')->where('day_id',$day->id)->where('court_id',$court_id)->orderby('slot_number','ASC')->first();
+        return $slot->price = $slot->price+$surcharge;
+    }
+
+    public function slots($from,$to,$from_date,$to_date,$court){
+
+
+
+        #48 slots per day
+        if($from_date == $to_date){
+            $slots = $to - $from;
+            $data = [];
+            for($i=$from;$i<=$to;$i++){
+                $a=[];
+                $a['date'] = $from_date;
+                $a['slot'] = $i;
+                $a['price'] = $this->price_of_slot($a['slot'],$a['date'],$court);
+                array_push($data, $a);
+            }
+        }else{
+            $days_difference = Carbon::parse($to_date)->diffInDays(Carbon::parse($from_date));
+            $dates = [];
+            $dates['dates'] = [];
+            $data = [];
+            for ($i=0;$i<=$days_difference;$i++){
+                if($i==0){
+                    $dates['from'] = Carbon::parse($from_date)->addDays($i)->format('Y-m-d');
+                }elseif($i==$days_difference){
+                    $dates['to'] = Carbon::parse($from_date)->addDays($i)->format('Y-m-d');
+                }else{
+                    array_push($dates['dates'],Carbon::parse($from_date)->addDays($i)->format('Y-m-d'));
+                }
+            }
+
+            //From slots
+
+                for($i=$from;$i<=48;$i++){
+                    $a=[];
+                    $a['date'] = $dates['from'];
+                    $a['slot'] = $i;
+                    $a['price'] = $this->price_of_slot($a['slot'],$a['date'],$court);
+                    array_push($data, $a);
+                }
+
+
+            //Middle slots
+
+            if(!empty($dates['dates'])){
+                foreach ($dates['dates'] as $obj){
+                    for($i=1;$i<=48;$i++){
+                        $a=[];
+                        $a['date'] = $obj;
+                        $a['slot'] = $i;
+                        $a['price'] = $this->price_of_slot($a['slot'],$a['date'],$court);
+                        array_push($data, $a);
+                    }
+                }
+            }
+
+            //End slots
+
+                for($i=1;$i<=$to;$i++){
+                    $a=[];
+                    $a['date'] = $dates['to'];
+                    $a['slot'] = $i;
+                    $a['price'] = $this->price_of_slot($a['slot'],$a['date'],$court);
+                    array_push($data, $a);
+                }
+
+
+        }
+
+        return $data;
+
+
 
     }
 }
