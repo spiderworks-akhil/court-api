@@ -69,7 +69,10 @@ class CourtController extends Controller
 
         $slots->map(function ($item)use($surcharge,$f,$t,$holiday,$court_id,$date){
             $item->price = $item->price+$surcharge;
-            $item->slot_time = $f->addMinutes(30)->format('H:i').' - '.$t->addMinutes(30)->format('H:i');
+            $time=[];
+            $time['from'] = $f->addMinutes(30)->format('H:i');
+            $time['to'] = $t->addMinutes(30)->format('H:i');
+            $item->slot_time = $time;
             if(!empty($holiday)){
                 $item->is_slot_open = $holiday->is_business_open;
             }
