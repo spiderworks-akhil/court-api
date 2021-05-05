@@ -67,21 +67,32 @@ class CourtController extends Controller
         $f = Carbon::parse('00:00:00 1-1-2020');
         $t = Carbon::parse('00:30:00 1-1-2020');
 
-        $slots->map(function ($item)use($surcharge,$f,$t,$holiday){
+        $slots->map(function ($item)use($surcharge,$f,$t,$holiday,$court_id,$date){
             $item->price = $item->price+$surcharge;
             $item->slot_time = $f->addMinutes(30)->format('H:i').' - '.$t->addMinutes(30)->format('H:i');
             if(!empty($holiday)){
                 $item->is_slot_open = $holiday->is_business_open;
             }
+
+            $slot_check = SlotHistory::where('court_id',$court_id)->where('slot',$item->slot_number)->where('date',$date)->first();
+            if($slot_check){
+                $item->status = 2;
+            }
             return $item;
         });
 
+
+        $slot_status = [
+          1=>'available',
+          2=>'booked'
+        ];
         $response = [
             'staus' => true,
             'holiday' => $holiday,
             'day' => $d,
             'court' => $court,
-            'data' => $slots
+            'data' => $slots,
+            'slot_status' => $slot_status
         ];
 
 
