@@ -174,7 +174,7 @@ class CourtController extends Controller
         }
 
         $response = $response = [
-            'staus' => false,
+            'staus' => true,
             'message' => 'Booking created',
             'data' => $booking
         ];
