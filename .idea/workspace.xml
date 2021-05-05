@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app/Http/Controllers/Api/CourtController.php" line="263" mnemonic="9" />
+    <bookmark url="file://$PROJECT_DIR$/app/Http/Controllers/Api/CourtController.php" line="265" mnemonic="9" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3b67540-02d1-46a6-b9d8-fd8bdf3d2e6c" name="Default" comment="">
@@ -23,8 +23,8 @@
       <file leaf-file-name="CourtController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/CourtController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="85" column="23" selection-start-line="85" selection-start-column="23" selection-end-line="85" selection-end-column="23" />
+            <state relative-caret-position="279">
+              <caret line="72" column="56" selection-start-line="72" selection-start-column="56" selection-end-line="72" selection-end-column="56" />
               <folding>
                 <element signature="e#44#80#0#PHP" expanded="true" />
                 <element signature="e#4639#5495#0#PHP" />
@@ -419,7 +419,7 @@
       <workItem from="1619676469634" duration="6264000" />
       <workItem from="1619758860376" duration="14303000" />
       <workItem from="1620015577281" duration="15349000" />
-      <workItem from="1620191413193" duration="9378000" />
+      <workItem from="1620191413193" duration="11092000" />
     </task>
     <task id="LOCAL-00001" summary="Login issue fixed">
       <created>1619759020129</created>
@@ -512,11 +512,25 @@
       <option name="project" value="LOCAL" />
       <updated>1620204553736</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="API to get list of slots">
+      <created>1620206279109</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1620206279109</updated>
+    </task>
+    <task id="LOCAL-00015" summary="API to get list of slots">
+      <created>1620209087473</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1620209087473</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46436000" />
+    <option name="totallyTimeSpent" value="48150000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -537,7 +551,7 @@
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32897604" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.42156863" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.42156863" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12899786" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
@@ -920,8 +934,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/CourtController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="85" column="23" selection-start-line="85" selection-start-column="23" selection-end-line="85" selection-end-column="23" />
+        <state relative-caret-position="279">
+          <caret line="72" column="56" selection-start-line="72" selection-start-column="56" selection-end-line="72" selection-end-column="56" />
           <folding>
             <element signature="e#44#80#0#PHP" expanded="true" />
             <element signature="e#4639#5495#0#PHP" />
