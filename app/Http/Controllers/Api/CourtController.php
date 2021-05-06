@@ -418,7 +418,14 @@ class CourtController extends Controller
 //            return response($response, 403);
 //        }
         $booking =  Booking::find($request->booking_id);
-        $pending_amount = $booking->amount - $booking->paid_amount;
+        if(!$booking){
+            $response = [
+                'staus' => false,
+                'message' => 'Booking not found'
+            ];
+            return response($response, 403);
+        }
+        $pending_amount = $booking->total - $booking->paid_amount;
 
 
         if($pending_amount < $request->amount){
@@ -451,6 +458,18 @@ class CourtController extends Controller
             'booking' => $booking
         ];
         return response($response, 200);
+    }
+
+    public function booking_details(Request $request){
+        $booking = Booking::where('id',$request->booking_id)->with('payment_history')->get();
+
+        $response = [
+            'staus' => true,
+            'booking' => $booking
+        ];
+
+        return response($response, 200);
+
     }
 
 

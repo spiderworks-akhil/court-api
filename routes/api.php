@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('court-list',[Court::class,'get_court_list']);
     Route::get('court-slots',[Court::class,'get_court_slots']);
     Route::get('get-estimate',[Court::class,'get_estimate']);
+    Route::get('booking-details',[Court::class,'booking_details']);
 
     Route::get('my-booking',[Court::class,'get_my_booking']);
     Route::get('all-booking',[Court::class,'get_all_booking']);
