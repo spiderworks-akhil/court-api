@@ -10,4 +10,8 @@ class Booking extends Model
     use HasFactory;
 
     protected $table = 'booking';
+
+    public function payment_history(){
+        return $this->hasMany('App\Models\Payment','booking_id','id');
+    }
 }

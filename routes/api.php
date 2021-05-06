@@ -28,10 +28,14 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::get('court-list',[Court::class,'get_court_list']);
     Route::get('court-slots',[Court::class,'get_court_slots']);
+    Route::get('get-estimate',[Court::class,'get_estimate']);
+
     Route::get('my-booking',[Court::class,'get_my_booking']);
+    Route::get('all-booking',[Court::class,'get_all_booking']);
 
 
     Route::post('book-court',[Court::class,'book_court']);
+    Route::post('add-payment',[Court::class,'add_payment']);
 
 
 });

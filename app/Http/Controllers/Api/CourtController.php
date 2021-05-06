@@ -7,6 +7,7 @@ use App\Models\Booking;
 use App\Models\Court;
 use App\Models\Day;
 use App\Models\Holiday;
+use App\Models\Payment;
 use App\Models\SlotHistory;
 use App\Models\Slots;
 use Carbon\Carbon;
@@ -102,6 +103,68 @@ class CourtController extends Controller
 
     }
 
+    public function get_estimate(Request $request){
+
+        $user = $request->user();
+        if(!$user){
+            $response = [
+                'staus' => false,
+                'message' => 'User not found!'
+            ];
+            return response($response, 200);
+        }
+
+        $court = Court::find($request->court_id);
+        if(!$court){
+            $response = [
+                'staus' => false,
+                'message' => 'Court not found!'
+            ];
+            return response($response, 200);
+        }
+
+        if(empty($request->start_slot) || empty($request->end_slot) || empty($request->start_slot_date)  || empty($request->end_slot_date) ){
+            $response = [
+                'staus' => false,
+                'message' => 'Slot not valid'
+            ];
+            return response($response, 200);
+        }
+
+
+
+
+
+
+
+        $slots = $this->slots($request->start_slot,$request->end_slot,$request->start_slot_date,$request->end_slot_date,$court->id);
+
+        $total = 0;
+        foreach ($slots as $obj){
+            $slot_check = SlotHistory::where('slot',$obj['slot'])->where('court_id',$court->id)->where('date',$obj['date'])->first();
+            if($slot_check){
+                $response = [
+                    'staus' => false,
+                    'message' => 'Some of slots not available, please check the availability of the slots'
+                ];
+                return response($response, 200);
+            }
+            $total += $obj['price'];
+        }
+
+
+
+        $response = $response = [
+            'staus' => true,
+            'message' => 'Price list',
+            'slots' => $slots,
+            'total' => $total
+        ];
+
+
+        return response($response, 200);
+    }
+
     public function book_court(Request $request){
 
         $user = $request->user();
@@ -162,10 +225,24 @@ class CourtController extends Controller
         $booking->total = $total;
         $booking->discount = $request->discount? $request->discount : 0;
         $booking->paid_amount = $request->paid_amout? $request->paid_amout : 0;
-        $booking->status = 1;
+        if($booking->paid_amount == $booking->total){
+            $booking->status = 2;
+        }else{
+            $booking->status = 1;
+        }
         $booking->approved_by = null;
         $booking->price_calculation = json_encode($slots);
         $booking->save();
+
+
+        if($booking->paid_amount > 0){
+            $payment = new Payment();
+            $payment->booking_id = $booking->id;
+            $payment->amount = $booking->paid_amount;
+            $payment->reference =  'Initial payment';
+            $payment->added_by = $user->id;
+            $payment->save();
+        }
 
         foreach ($slots as $obj){
             $slot_check = SlotHistory::where('slot',$obj['slot'])->where('court_id',$obj['slot'])->where('date',$obj['date'])->first();
@@ -189,7 +266,11 @@ class CourtController extends Controller
         $response = $response = [
             'staus' => true,
             'message' => 'Booking created',
-            'data' => $booking
+            'data' => $booking,
+            'booking_status' => [
+                1 => 'Payment not completed',
+                2 => 'Payment completed'
+            ]
         ];
 
 
@@ -304,4 +385,73 @@ class CourtController extends Controller
         ];
         return response($response, 200);
     }
+
+    public function get_all_booking(Request $request){
+        $user = $request->user();
+//        if($user->is_Admin !== 1){
+//            $response = [
+//                'staus' => false,
+//                'message' => 'Access denied'
+//            ];
+//            return response($response, 403);
+//        }
+        $bookings =  Booking::orderby('id','desc');
+        if(!empty($request->status)){
+            $bookings->where('status',$request->status);
+        }
+        $bookings = $bookings->paginate(10);
+        $response = [
+            'staus' => true,
+            'data' => $bookings
+        ];
+        return response($response, 200);
+    }
+
+
+    public function add_payment(Request $request){
+        $user = $request->user();
+//        if($user->is_Admin !== 1){
+//            $response = [
+//                'staus' => false,
+//                'message' => 'Access denied'
+//            ];
+//            return response($response, 403);
+//        }
+        $booking =  Booking::find($request->booking_id);
+        $pending_amount = $booking->amount - $booking->paid_amount;
+
+
+        if($pending_amount < $request->amount){
+            $response = [
+                'staus' => false,
+                'message' => 'Amount mismatch, Please check the amount'
+            ];
+            return response($response, 403);
+        }
+
+        if($request->amount == $pending_amount){
+            $booking->status = 2;
+        }
+
+
+        $booking->paid_amount = $booking->paid_amount+$request->amount;
+        $payment = new Payment();
+        $payment->booking_id = $booking->id;
+        $payment->amount = $request->amount;
+        $payment->reference =  $request->reference;
+        $payment->added_by = $user->id;
+        $payment->save();
+        $booking->save();
+
+
+
+        $response = [
+            'staus' => true,
+            'data' => $payment,
+            'booking' => $booking
+        ];
+        return response($response, 200);
+    }
+
+
 }
