@@ -165,7 +165,7 @@ class CourtController extends Controller
         return response($response, 200);
     }
 
-    public function book_court(Request $request){ return $request;
+    public function book_court(Request $request){
 
         $user = $request->user();
             if(!$user){
