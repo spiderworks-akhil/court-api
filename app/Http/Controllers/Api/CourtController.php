@@ -165,7 +165,7 @@ class CourtController extends Controller
         return response($response, 200);
     }
 
-    public function book_court(Request $request){
+    public function book_court(Request $request){ return $request;
 
         $user = $request->user();
             if(!$user){
@@ -409,7 +409,7 @@ class CourtController extends Controller
 
 
     public function add_payment(Request $request){
-        $user = $request->user();
+$user = $request->user();
 //        if($user->is_Admin !== 1){
 //            $response = [
 //                'staus' => false,
@@ -417,48 +417,48 @@ class CourtController extends Controller
 //            ];
 //            return response($response, 403);
 //        }
-        $booking =  Booking::find($request->booking_id);
-        if(!$booking){
-            $response = [
-                'staus' => false,
-                'message' => 'Booking not found'
-            ];
-            return response($response, 403);
-        }
-        $pending_amount = $booking->total - $booking->paid_amount;
+$booking =  Booking::find($request->booking_id);
+if(!$booking){
+$response = [
+'staus' => false,
+'message' => 'Booking not found'
+];
+return response($response, 403);
+}
+$pending_amount = $booking->total - $booking->paid_amount;
 
 
-        if($pending_amount < $request->amount){
-            $response = [
-                'staus' => false,
-                'message' => 'Amount mismatch, Please check the amount'
-            ];
-            return response($response, 403);
-        }
+if($pending_amount < $request->amount){
+    $response = [
+        'staus' => false,
+        'message' => 'Amount mismatch, Please check the amount'
+    ];
+    return response($response, 403);
+}
 
-        if($request->amount == $pending_amount){
-            $booking->status = 2;
-        }
-
-
-        $booking->paid_amount = $booking->paid_amount+$request->amount;
-        $payment = new Payment();
-        $payment->booking_id = $booking->id;
-        $payment->amount = $request->amount;
-        $payment->reference =  $request->reference;
-        $payment->added_by = $user->id;
-        $payment->save();
-        $booking->save();
+if($request->amount == $pending_amount){
+    $booking->status = 2;
+}
 
 
+$booking->paid_amount = $booking->paid_amount+$request->amount;
+$payment = new Payment();
+$payment->booking_id = $booking->id;
+$payment->amount = $request->amount;
+$payment->reference =  $request->reference;
+$payment->added_by = $user->id;
+$payment->save();
+$booking->save();
 
-        $response = [
-            'staus' => true,
-            'data' => $payment,
-            'booking' => $booking
-        ];
-        return response($response, 200);
-    }
+
+
+$response = [
+    'staus' => true,
+    'data' => $payment,
+    'booking' => $booking
+];
+return response($response, 200);
+}
 
     public function booking_details(Request $request){
         $booking = Booking::where('id',$request->booking_id)->with('payment_history')->get();
