@@ -232,7 +232,7 @@ class CourtController extends Controller
         }
         $booking->approved_by = null;
         $booking->price_calculation = json_encode($slots);
-        $booking->save();
+
 
 
         if($booking->paid_amount > 0){
@@ -243,6 +243,14 @@ class CourtController extends Controller
             $payment->added_by = $user->id;
             $payment->save();
         }
+
+        if($booking->paid_amount == $booking->total){
+            $booking->status = 4;
+        }elseif ($booking->paid_amount > 0){
+            $booking->status = 2;
+        }
+
+        $booking->save();
 
         foreach ($slots as $obj){
             $slot_check = SlotHistory::where('slot',$obj['slot'])->where('court_id',$obj['slot'])->where('date',$obj['date'])->first();
@@ -467,6 +475,8 @@ if($pending_amount < $request->amount){
 }
 
 if($request->amount == $pending_amount){
+    $booking->status = 4;
+}else{
     $booking->status = 2;
 }
 
@@ -503,8 +513,11 @@ return response($response, 200);
     }
 
     public function change_booking_status(Request $request){
+        $user = $request->user();
+
         $booking = Booking::where('id',$request->booking_id)->with('payment_history')->first();
         $booking->status = $request->status;
+        $booking->approved_by = $user->id;
         $booking->save();
 
         $response = [
