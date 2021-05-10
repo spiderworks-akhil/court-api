@@ -14,4 +14,8 @@ class Booking extends Model
     public function payment_history(){
         return $this->hasMany('App\Models\Payment','booking_id','id');
     }
+
+    public function court(){
+        return $this->belongsTo('App\Models\Court')->select('id','name');
+    }
 }

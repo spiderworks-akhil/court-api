@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::post('book-court',[Court::class,'book_court']);
     Route::post('add-payment',[Court::class,'add_payment']);
+    Route::post('change-booking-status',[Court::class,'change_booking_status']);
+    Route::post('add-firebase-token',[Court::class,'firebase_token_store']);
 
 
 });

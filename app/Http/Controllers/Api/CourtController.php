@@ -29,7 +29,7 @@ class CourtController extends Controller
         });
 
         $response = [
-            'staus' => true,
+            'status' => true,
             'data' => $courts
         ];
 
@@ -42,7 +42,7 @@ class CourtController extends Controller
         $court = Court::select('name')->find($court_id);
         if(!$court){
             $response = [
-                'staus' => false,
+                'status' => false,
                 'message' => 'Court not found',
             ];
             return response($response, 200);
@@ -59,7 +59,7 @@ class CourtController extends Controller
 
         if(count($slots) == 0){
             $response = [
-                'staus' => false,
+                'status' => false,
                 'message' => 'No slots added, Please contact directly'
             ];
             return response($response, 200);
@@ -90,7 +90,7 @@ class CourtController extends Controller
           2=>'booked'
         ];
         $response = [
-            'staus' => true,
+            'status' => true,
             'holiday' => $holiday,
             'day' => $d,
             'court' => $court,
@@ -108,7 +108,7 @@ class CourtController extends Controller
         $user = $request->user();
         if(!$user){
             $response = [
-                'staus' => false,
+                'status' => false,
                 'message' => 'User not found!'
             ];
             return response($response, 200);
@@ -117,7 +117,7 @@ class CourtController extends Controller
         $court = Court::find($request->court_id);
         if(!$court){
             $response = [
-                'staus' => false,
+                'status' => false,
                 'message' => 'Court not found!'
             ];
             return response($response, 200);
@@ -125,7 +125,7 @@ class CourtController extends Controller
 
         if(empty($request->start_slot) || empty($request->end_slot) || empty($request->start_slot_date)  || empty($request->end_slot_date) ){
             $response = [
-                'staus' => false,
+                'status' => false,
                 'message' => 'Slot not valid'
             ];
             return response($response, 200);
@@ -144,7 +144,7 @@ class CourtController extends Controller
             $slot_check = SlotHistory::where('slot',$obj['slot'])->where('court_id',$court->id)->where('date',$obj['date'])->first();
             if($slot_check){
                 $response = [
-                    'staus' => false,
+                    'status' => false,
                     'message' => 'Some of slots not available, please check the availability of the slots'
                 ];
                 return response($response, 200);
@@ -155,7 +155,7 @@ class CourtController extends Controller
 
 
         $response = $response = [
-            'staus' => true,
+            'status' => true,
             'message' => 'Price list',
             'slots' => $slots,
             'total' => $total
@@ -170,7 +170,7 @@ class CourtController extends Controller
         $user = $request->user();
             if(!$user){
                 $response = [
-                    'staus' => false,
+                    'status' => false,
                     'message' => 'User not found!'
                 ];
                 return response($response, 200);
@@ -179,7 +179,7 @@ class CourtController extends Controller
         $court = Court::find($request->court_id);
             if(!$court){
                 $response = [
-                    'staus' => false,
+                    'status' => false,
                     'message' => 'Court not found!'
                 ];
                 return response($response, 200);
@@ -187,7 +187,7 @@ class CourtController extends Controller
 
             if(empty($request->start_slot) || empty($request->end_slot) || empty($request->start_slot_date)  || empty($request->end_slot_date) ){
                 $response = [
-                    'staus' => false,
+                    'status' => false,
                     'message' => 'Slot not valid'
                 ];
                 return response($response, 200);
@@ -213,7 +213,7 @@ class CourtController extends Controller
             $slot_check = SlotHistory::where('slot',$obj['slot'])->where('court_id',$court->id)->where('date',$obj['date'])->first();
             if($slot_check){
                 $response = [
-                    'staus' => false,
+                    'status' => false,
                     'message' => 'Some of slots not available, please check the availability of the slots'
                 ];
                 return response($response, 200);
@@ -248,7 +248,7 @@ class CourtController extends Controller
             $slot_check = SlotHistory::where('slot',$obj['slot'])->where('court_id',$obj['slot'])->where('date',$obj['date'])->first();
             if($slot_check){
                 $response = [
-                    'staus' => false,
+                    'status' => false,
                     'message' => 'Some of slots not available, please check the availability of the slots'
                 ];
                 return response($response, 200);
@@ -264,17 +264,23 @@ class CourtController extends Controller
         }
 
         $response = $response = [
-            'staus' => true,
+            'status' => true,
             'message' => 'Booking created',
             'data' => $booking,
-            'booking_status' => [
-                1 => 'Payment not completed',
-                2 => 'Payment completed'
-            ]
+            'booking_status' => $this->payment_response()
         ];
 
 
         return response($response, 200);
+    }
+
+    public function payment_response(){
+        return [
+            0 => 'Booking cancelled',
+            1 => 'Booking Created',
+            2 => 'Partially paid',
+            4 => 'Payment completed'
+        ];
     }
 
     public function price_of_slot($slot,$date,$court){
@@ -282,7 +288,7 @@ class CourtController extends Controller
         $court = Court::select('name')->find($court_id);
         if(!$court){
             $response = [
-                'staus' => false,
+                'status' => false,
                 'message' => 'Court not found',
             ];
             return response($response, 200);
@@ -401,9 +407,10 @@ class CourtController extends Controller
 
     public function get_my_booking(Request $request){
         $user = $request->user();
-        $bookings =  Booking::where('user_id',$user->id)->get();
+        $bookings =  Booking::where('user_id',$user->id)->with('court')->paginate(10);
+
         $response = [
-            'staus' => true,
+            'status' => true,
             'user' => $user,
             'data' => $bookings
         ];
@@ -414,7 +421,7 @@ class CourtController extends Controller
         $user = $request->user();
 //        if($user->is_Admin !== 1){
 //            $response = [
-//                'staus' => false,
+//                'status' => false,
 //                'message' => 'Access denied'
 //            ];
 //            return response($response, 403);
@@ -425,18 +432,17 @@ class CourtController extends Controller
         }
         $bookings = $bookings->paginate(10);
         $response = [
-            'staus' => true,
+            'status' => true,
             'data' => $bookings
         ];
         return response($response, 200);
     }
 
-
     public function add_payment(Request $request){
 $user = $request->user();
 //        if($user->is_Admin !== 1){
 //            $response = [
-//                'staus' => false,
+//                'status' => false,
 //                'message' => 'Access denied'
 //            ];
 //            return response($response, 403);
@@ -444,7 +450,7 @@ $user = $request->user();
 $booking =  Booking::find($request->booking_id);
 if(!$booking){
 $response = [
-'staus' => false,
+'status' => false,
 'message' => 'Booking not found'
 ];
 return response($response, 403);
@@ -454,7 +460,7 @@ $pending_amount = $booking->total - $booking->paid_amount;
 
 if($pending_amount < $request->amount){
     $response = [
-        'staus' => false,
+        'status' => false,
         'message' => 'Amount mismatch, Please check the amount'
     ];
     return response($response, 403);
@@ -477,7 +483,7 @@ $booking->save();
 
 
 $response = [
-    'staus' => true,
+    'status' => true,
     'data' => $payment,
     'booking' => $booking
 ];
@@ -488,12 +494,48 @@ return response($response, 200);
         $booking = Booking::where('id',$request->booking_id)->with('payment_history')->get();
 
         $response = [
-            'staus' => true,
+            'status' => true,
             'booking' => $booking
         ];
 
         return response($response, 200);
 
+    }
+
+    public function change_booking_status(Request $request){
+        $booking = Booking::where('id',$request->booking_id)->with('payment_history')->first();
+        $booking->status = $request->status;
+        $booking->save();
+
+        $response = [
+            'status' => true,
+            'booking' => $booking,
+            'booking_status' => $this->payment_response()
+        ];
+
+        return response($response, 200);
+
+    }
+
+    public function firebase_token_store(Request $request){
+
+        $user = $request->user();
+        $user->firebase_token = $request->firebase_token;
+        $status = $user->save();
+        if($status){
+            $response = [
+                'status' => true,
+                'user' => $user
+            ];
+        }else{
+            $response = [
+                'status' => false,
+                'user' => $user
+            ];
+        }
+
+
+        return response($response, 200);
     }
 
 
