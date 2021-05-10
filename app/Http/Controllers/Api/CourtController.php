@@ -314,6 +314,12 @@ class CourtController extends Controller
                 $a['date'] = $from_date;
                 $a['slot'] = $i;
                 $a['price'] = $this->price_of_slot($a['slot'],$a['date'],$court);
+                $f = Carbon::parse('00:00:00 1-1-2020');
+                $t = Carbon::parse('00:30:00 1-1-2020');
+                $fr =$f->addMinutes(30*$i)->format('H:i');
+                $tu =$t->addMinutes(30*$i)->format('H:i');
+                $a['from'] = $fr;
+                $a['to'] = $tu;
                 array_push($data, $a);
             }
         }else{
@@ -338,6 +344,12 @@ class CourtController extends Controller
                     $a['date'] = $dates['from'];
                     $a['slot'] = $i;
                     $a['price'] = $this->price_of_slot($a['slot'],$a['date'],$court);
+                    $f = Carbon::parse('00:00:00 1-1-2020');
+                    $t = Carbon::parse('00:30:00 1-1-2020');
+                    $fr =$f->addMinutes(30*$i)->format('H:i');
+                    $tu =$t->addMinutes(30*$i)->format('H:i');
+                    $a['from'] = $fr;
+                    $a['to'] = $tu;
                     array_push($data, $a);
                 }
 
@@ -351,6 +363,12 @@ class CourtController extends Controller
                         $a['date'] = $obj;
                         $a['slot'] = $i;
                         $a['price'] = $this->price_of_slot($a['slot'],$a['date'],$court);
+                        $f = Carbon::parse('00:00:00 1-1-2020');
+                        $t = Carbon::parse('00:30:00 1-1-2020');
+                        $fr =$f->addMinutes(30*$i)->format('H:i');
+                        $tu =$t->addMinutes(30*$i)->format('H:i');
+                        $a['from'] = $fr;
+                        $a['to'] = $tu;
                         array_push($data, $a);
                     }
                 }
@@ -363,6 +381,12 @@ class CourtController extends Controller
                     $a['date'] = $dates['to'];
                     $a['slot'] = $i;
                     $a['price'] = $this->price_of_slot($a['slot'],$a['date'],$court);
+                    $f = Carbon::parse('00:00:00 1-1-2020');
+                    $t = Carbon::parse('00:30:00 1-1-2020');
+                    $fr =$f->addMinutes(30*$i)->format('H:i');
+                    $tu =$t->addMinutes(30*$i)->format('H:i');
+                    $a['from'] = $fr;
+                    $a['to'] = $tu;
                     array_push($data, $a);
                 }
 

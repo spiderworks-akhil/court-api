@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app/Http/Controllers/Api/CourtController.php" line="346" mnemonic="9" />
+    <bookmark url="file://$PROJECT_DIR$/app/Http/Controllers/Api/CourtController.php" line="358" mnemonic="9" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3b67540-02d1-46a6-b9d8-fd8bdf3d2e6c" name="Default" comment="">
@@ -23,8 +23,8 @@
       <file leaf-file-name="CourtController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/CourtController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="167" column="66" selection-start-line="167" selection-start-column="66" selection-end-line="167" selection-end-column="66" />
+            <state relative-caret-position="209">
+              <caret line="401" column="26" selection-start-line="401" selection-start-column="24" selection-end-line="401" selection-end-column="26" />
               <folding>
                 <element signature="e#44#80#0#PHP" expanded="true" />
               </folding>
@@ -106,6 +106,13 @@
       <find>domain</find>
       <find>loca</find>
       <find>court not</find>
+      <find>slots</find>
+      <find>timin</find>
+      <find>tim</find>
+      <find>return res</find>
+      <find>Carb</find>
+      <find>$f-&gt;</find>
+      <find>$f</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -297,7 +304,7 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1929" />
+    <option name="x" value="-9" />
     <option name="y" value="-9" />
     <option name="width" value="1938" />
     <option name="height" value="1048" />
@@ -308,6 +315,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -390,7 +398,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -439,7 +446,8 @@
       <workItem from="1620191413193" duration="14356000" />
       <workItem from="1620274418694" duration="4411000" />
       <workItem from="1620365601298" duration="70000" />
-      <workItem from="1620385148180" duration="762000" />
+      <workItem from="1620385148180" duration="1370000" />
+      <workItem from="1620622686049" duration="1440000" />
     </task>
     <task id="LOCAL-00001" summary="Login issue fixed">
       <created>1619759020129</created>
@@ -574,11 +582,18 @@
       <option name="project" value="LOCAL" />
       <updated>1620288250756</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="API to get list of slots">
+      <created>1620386418115</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1620386418115</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56657000" />
+    <option name="totallyTimeSpent" value="58705000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -590,7 +605,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1927" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32897604" />
@@ -600,7 +615,7 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.42156863" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1328859" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13489933" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -995,8 +1010,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/CourtController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="167" column="66" selection-start-line="167" selection-start-column="66" selection-end-line="167" selection-end-column="66" />
+        <state relative-caret-position="209">
+          <caret line="401" column="26" selection-start-line="401" selection-start-column="24" selection-end-line="401" selection-end-column="26" />
           <folding>
             <element signature="e#44#80#0#PHP" expanded="true" />
           </folding>
