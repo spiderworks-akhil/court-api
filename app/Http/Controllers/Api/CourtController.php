@@ -505,7 +505,7 @@ return response($response, 200);
 }
 
     public function booking_details(Request $request){
-        $booking = Booking::where('id',$request->booking_id)->with('payment_history')->get();
+        $booking = Booking::where('id',$request->booking_id)->with('payment_history')->with('court')->get();
 
         $response = [
             'status' => true,
