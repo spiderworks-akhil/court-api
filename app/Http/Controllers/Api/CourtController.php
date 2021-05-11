@@ -278,6 +278,8 @@ class CourtController extends Controller
             'booking_status' => $this->payment_response()
         ];
 
+        $this->send_notification('Booking registered','Waiting for the confirmation');
+
 
         return response($response, 200);
     }
@@ -287,7 +289,8 @@ class CourtController extends Controller
             0 => 'Booking cancelled',
             1 => 'Booking Created',
             2 => 'Partially paid',
-            4 => 'Payment completed'
+            4 => 'Payment completed',
+            3 => 'Booking Approved'
         ];
     }
 
@@ -519,6 +522,10 @@ return response($response, 200);
         $booking->status = $request->status;
         $booking->approved_by = $user->id;
         $booking->save();
+
+        if($booking->status == 0){
+         return   $this->send_notification('c6na8wI6TDGsoVv-f-15V3:APA91bFCXhuhXx163kVcnuzFL1rF7IYIIQTKnSPLqanm-HZg1nJ9EESnJXV1k1Q5geResGnP5eybLgs0MR22vvu4iRfjfg2X0ytFnTb3pAXPUJKEFJbYo7JVAakTirekLGEIO8BsK2LI','Oh.. Your booking is cancelled','Something happened. please try again later');
+        }
 
         $response = [
             'status' => true,

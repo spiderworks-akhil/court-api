@@ -33,7 +33,8 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => env('GOOGLE_CALL_BACK')
+        'redirect' => env('GOOGLE_CALL_BACK'),
+        'firebase_key' => env('GOOGLE_FIREBASE_SERVER_KEY')
     ],
 
 ];
