@@ -429,6 +429,28 @@ class CourtController extends Controller
         return response($response, 200);
     }
 
+    public function add_phone(Request $request){
+        $user = $request->user();
+        $user->phone = $request->phone;
+        if(strlen($request->phone) !== 10){
+            $response = [
+                'status' => false,
+                'message' => 'Phone number must be 10 digits'
+            ];
+        }else{
+            $user->save();
+
+            $response = [
+                'status' => true,
+                'user' => $user
+            ];
+        }
+
+        return response($response, 200);
+    }
+
+
+
     public function get_all_booking(Request $request){
         $user = $request->user();
 //        if($user->is_Admin !== 1){

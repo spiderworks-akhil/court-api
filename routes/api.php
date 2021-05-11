@@ -35,6 +35,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('all-booking',[Court::class,'get_all_booking']);
 
 
+    Route::post('add-phone',[Court::class,'add_phone']);
     Route::post('book-court',[Court::class,'book_court']);
     Route::post('add-payment',[Court::class,'add_payment']);
     Route::post('change-booking-status',[Court::class,'change_booking_status']);
