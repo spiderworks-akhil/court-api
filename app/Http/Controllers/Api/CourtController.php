@@ -279,7 +279,7 @@ class CourtController extends Controller
         ];
 
         if(!empty($user->firebase_token)){
-            return   $this->send_notification($user->firebase_token,'Booking registered','Waiting for the confirmation');
+           $this->send_notification($user->firebase_token,'Booking registered','Waiting for the confirmation');
         }
 
         return response($response, 200);
