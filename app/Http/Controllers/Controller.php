@@ -40,8 +40,8 @@ class Controller extends BaseController
         curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
         curl_setopt ( $ch, CURLOPT_POSTFIELDS, $fields );
 
-        $result = curl_exec ( $ch );
-        echo $result;
+        curl_exec ( $ch );
+
         curl_close ( $ch );
     }
 
