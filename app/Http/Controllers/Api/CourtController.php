@@ -419,7 +419,7 @@ class CourtController extends Controller
 
     public function get_my_booking(Request $request){
         $user = $request->user();
-        $bookings =  Booking::where('user_id',$user->id)->with('court')->paginate(10);
+        $bookings =  Booking::where('user_id',$user->id)->with('court')->orderby('id','DESC')->paginate(10);
 
         $response = [
             'status' => true,
