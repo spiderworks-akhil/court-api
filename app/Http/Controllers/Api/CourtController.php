@@ -155,7 +155,7 @@ class CourtController extends Controller
         if(!empty($user->phone)){
             $phone = $user->phone;
         }else{
-            $phone = false;
+            $phone = 'false';
         }
 
 
