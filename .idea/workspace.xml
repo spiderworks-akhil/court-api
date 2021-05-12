@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app/Http/Controllers/Api/CourtController.php" line="358" mnemonic="9" />
+    <bookmark url="file://$PROJECT_DIR$/app/Http/Controllers/Api/CourtController.php" line="366" mnemonic="9" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3b67540-02d1-46a6-b9d8-fd8bdf3d2e6c" name="Default" comment="">
@@ -23,8 +23,8 @@
       <file leaf-file-name="api.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="31" />
+            <state relative-caret-position="561">
+              <caret line="37" column="26" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="26" />
               <folding>
                 <element signature="e#7#35#0#PHP" expanded="true" />
               </folding>
@@ -35,13 +35,13 @@
       <file leaf-file-name="CourtController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/CourtController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="421" column="86" selection-start-line="421" selection-start-column="86" selection-end-line="421" selection-end-column="86" />
+            <state relative-caret-position="644">
+              <caret line="168" column="29" selection-start-line="168" selection-start-column="29" selection-end-line="168" selection-end-column="29" />
               <folding>
                 <element signature="e#44#80#0#PHP" expanded="true" />
                 <element signature="e#376#1106#0#PHP" />
                 <element signature="e#1112#3349#0#PHP" />
-                <element signature="e#3355#5096#0#PHP" />
+                <element signature="e#5102#9183#0#PHP" />
               </folding>
             </state>
           </provider>
@@ -50,7 +50,7 @@
       <file leaf-file-name="Controller.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
+            <state relative-caret-position="646">
               <caret line="42" column="8" selection-start-line="42" selection-start-column="8" selection-end-line="42" selection-end-column="8" />
             </state>
           </provider>
@@ -59,8 +59,8 @@
       <file leaf-file-name=".env" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.env">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="455">
-              <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="54" selection-end-column="179" />
+            <state relative-caret-position="901">
+              <caret line="53" selection-start-line="53" selection-end-line="54" selection-end-column="179" />
             </state>
           </provider>
         </entry>
@@ -141,6 +141,7 @@
       <find>Payment</find>
       <find>send</find>
       <find>-&gt;with(</find>
+      <find>my boo</find>
     </findStrings>
     <replaceStrings>
       <replace>status</replace>
@@ -187,10 +188,10 @@
         <option value="$PROJECT_DIR$/app/Models/SlotHistory.php" />
         <option value="$PROJECT_DIR$/app/Models/Payment.php" />
         <option value="$PROJECT_DIR$/app/Models/Booking.php" />
-        <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/config/services.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Controller.php" />
+        <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/CourtController.php" />
       </list>
     </option>
@@ -494,7 +495,8 @@
       <workItem from="1620385148180" duration="1370000" />
       <workItem from="1620622686049" duration="8433000" />
       <workItem from="1620734469741" duration="55000" />
-      <workItem from="1620734761771" duration="2319000" />
+      <workItem from="1620734761771" duration="4118000" />
+      <workItem from="1620799005396" duration="800000" />
     </task>
     <task id="LOCAL-00001" summary="Login issue fixed">
       <created>1619759020129</created>
@@ -692,11 +694,25 @@
       <option name="project" value="LOCAL" />
       <updated>1620739746737</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Api modifications">
+      <created>1620740420112</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1620740420112</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Api modifications">
+      <created>1620747357960</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1620747357960</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68072000" />
+    <option name="totallyTimeSpent" value="70671000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -717,8 +733,8 @@
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32897604" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="2" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.42156863" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10927505" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.42156863" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.110341154" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -757,17 +773,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/Api/CourtController.php</url>
-          <line>167</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/app/Http/Controllers/Api/CourtController.php</url>
           <line>105</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/Api/CourtController.php</url>
-          <line>506</line>
+          <line>536</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
@@ -1095,22 +1106,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="54" selection-end-column="179" />
+        <state relative-caret-position="901">
+          <caret line="53" selection-start-line="53" selection-end-line="54" selection-end-column="179" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
+        <state relative-caret-position="646">
           <caret line="42" column="8" selection-start-line="42" selection-start-column="8" selection-end-line="42" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="31" />
+        <state relative-caret-position="561">
+          <caret line="37" column="26" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="26" />
           <folding>
             <element signature="e#7#35#0#PHP" expanded="true" />
           </folding>
@@ -1119,13 +1130,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/CourtController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="421" column="86" selection-start-line="421" selection-start-column="86" selection-end-line="421" selection-end-column="86" />
+        <state relative-caret-position="644">
+          <caret line="168" column="29" selection-start-line="168" selection-start-column="29" selection-end-line="168" selection-end-column="29" />
           <folding>
             <element signature="e#44#80#0#PHP" expanded="true" />
             <element signature="e#376#1106#0#PHP" />
             <element signature="e#1112#3349#0#PHP" />
-            <element signature="e#3355#5096#0#PHP" />
+            <element signature="e#5102#9183#0#PHP" />
           </folding>
         </state>
       </provider>

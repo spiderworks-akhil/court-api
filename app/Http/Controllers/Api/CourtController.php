@@ -152,13 +152,21 @@ class CourtController extends Controller
             $total += $obj['price'];
         }
 
+        if(!empty($user->phone)){
+            $phone = $user->phone;
+        }else{
+            $phone = false;
+        }
+
+
 
 
         $response = $response = [
             'status' => true,
             'message' => 'Price list',
             'slots' => $slots,
-            'total' => $total
+            'total' => $total,
+            'phone' => $phone
         ];
 
 
