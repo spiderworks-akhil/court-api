@@ -7,6 +7,7 @@
     <list default="true" id="c3b67540-02d1-46a6-b9d8-fd8bdf3d2e6c" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/CourtController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/CourtController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Booking.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Booking.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,13 +36,12 @@
       <file leaf-file-name="CourtController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/CourtController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="644">
-              <caret line="168" column="29" selection-start-line="168" selection-start-column="29" selection-end-line="168" selection-end-column="29" />
+            <state relative-caret-position="570">
+              <caret line="474" column="41" selection-start-line="474" selection-start-column="41" selection-end-line="474" selection-end-column="41" />
               <folding>
                 <element signature="e#44#80#0#PHP" expanded="true" />
                 <element signature="e#376#1106#0#PHP" />
                 <element signature="e#1112#3349#0#PHP" />
-                <element signature="e#5102#9183#0#PHP" />
               </folding>
             </state>
           </provider>
@@ -104,8 +104,8 @@
       <file leaf-file-name="Booking.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Models/Booking.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="18" column="70" selection-start-line="18" selection-start-column="70" selection-end-line="18" selection-end-column="70" />
+            <state relative-caret-position="357">
+              <caret line="22" column="50" selection-start-line="22" selection-start-column="50" selection-end-line="22" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -187,11 +187,11 @@
         <option value="$PROJECT_DIR$/resources/views/admin/slot/court.blade.php" />
         <option value="$PROJECT_DIR$/app/Models/SlotHistory.php" />
         <option value="$PROJECT_DIR$/app/Models/Payment.php" />
-        <option value="$PROJECT_DIR$/app/Models/Booking.php" />
         <option value="$PROJECT_DIR$/config/services.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Controller.php" />
         <option value="$PROJECT_DIR$/routes/api.php" />
+        <option value="$PROJECT_DIR$/app/Models/Booking.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/CourtController.php" />
       </list>
     </option>
@@ -496,7 +496,8 @@
       <workItem from="1620622686049" duration="8433000" />
       <workItem from="1620734469741" duration="55000" />
       <workItem from="1620734761771" duration="4118000" />
-      <workItem from="1620799005396" duration="800000" />
+      <workItem from="1620799005396" duration="3255000" />
+      <workItem from="1620958467365" duration="104000" />
     </task>
     <task id="LOCAL-00001" summary="Login issue fixed">
       <created>1619759020129</created>
@@ -708,11 +709,25 @@
       <option name="project" value="LOCAL" />
       <updated>1620747357960</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Api modifications">
+      <created>1620801496707</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1620801496717</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Api modifications">
+      <created>1620806607573</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1620806607573</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70671000" />
+    <option name="totallyTimeSpent" value="73230000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -734,7 +749,7 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.42156863" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.110341154" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11140725" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1083,20 +1098,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Booking.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="18" column="70" selection-start-line="18" selection-start-column="70" selection-end-line="18" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="9" column="24" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/services.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
@@ -1128,15 +1129,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Booking.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="22" column="50" selection-start-line="22" selection-start-column="50" selection-end-line="22" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="9" column="24" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/CourtController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="644">
-          <caret line="168" column="29" selection-start-line="168" selection-start-column="29" selection-end-line="168" selection-end-column="29" />
+        <state relative-caret-position="570">
+          <caret line="474" column="41" selection-start-line="474" selection-start-column="41" selection-end-line="474" selection-end-column="41" />
           <folding>
             <element signature="e#44#80#0#PHP" expanded="true" />
             <element signature="e#376#1106#0#PHP" />
             <element signature="e#1112#3349#0#PHP" />
-            <element signature="e#5102#9183#0#PHP" />
           </folding>
         </state>
       </provider>

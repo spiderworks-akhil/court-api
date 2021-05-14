@@ -472,7 +472,7 @@ class CourtController extends Controller
         if(!empty($request->status)){
             $bookings->where('status',$request->status);
         }
-        $bookings = $bookings->paginate(10);
+        $bookings = $bookings->with('user')->paginate(10);
         $response = [
             'status' => true,
             'data' => $bookings

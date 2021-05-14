@@ -18,4 +18,8 @@ class Booking extends Model
     public function court(){
         return $this->belongsTo('App\Models\Court')->select('id','name');
     }
+
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
 }
