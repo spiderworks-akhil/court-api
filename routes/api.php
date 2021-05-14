@@ -19,6 +19,7 @@ use App\Http\Controllers\Api\CourtController as Court;
 Route::post('login',[Login::class,'login']);
 Route::get('user',[User::class,'user']);
 
+Route::get('get-version',[Court::class,'get_update']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -33,7 +34,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::get('my-booking',[Court::class,'get_my_booking']);
     Route::get('all-booking',[Court::class,'get_all_booking']);
-    Route::get('get-version',[Court::class,'get_update']);
 
     Route::post('set-version',[Court::class,'set_update']);
     Route::post('add-phone',[Court::class,'add_phone']);

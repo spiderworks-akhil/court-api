@@ -73,7 +73,7 @@ class CourtController extends Controller
             $item->price = $item->price+$surcharge;
             $item->from =$f->addMinutes(30)->format('H:i');
             $item->to =$t->addMinutes(30)->format('H:i');
-            $item->slot_time = $f->addMinutes(30)->format('H:i').' - '.$t->addMinutes(30)->format('H:i');
+            $item->slot_time = $item->from.' - '.$item->to;
             if(!empty($holiday)){
                 $item->is_slot_open = $holiday->is_business_open;
             }
