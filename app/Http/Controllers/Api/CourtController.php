@@ -10,6 +10,7 @@ use App\Models\Holiday;
 use App\Models\Payment;
 use App\Models\SlotHistory;
 use App\Models\Slots;
+use App\Models\Version;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -457,8 +458,6 @@ class CourtController extends Controller
         return response($response, 200);
     }
 
-
-
     public function get_all_booking(Request $request){
         $user = $request->user();
 //        if($user->is_Admin !== 1){
@@ -585,6 +584,43 @@ return response($response, 200);
             ];
         }
 
+
+        return response($response, 200);
+    }
+
+    public function get_update(Request $request){
+        $version = Version::orderby('id','DESC')->first();
+
+        if($version){
+            $response = [
+                'status' => true,
+                'version' => $version
+            ];
+            return response($response, 200);
+        }
+    }
+
+    public function set_update(Request $request){
+
+        $version = Version::where('version',$request->version)->first();
+
+        if($version){
+            $response = [
+                'status' => false,
+                'version' => $version
+            ];
+            return response($response, 200);
+        }
+
+        $version = new Version();
+        $version->type = $request->type;
+        $version->version = $request->version;
+        $version->save();
+
+        $response = [
+            'status' => true,
+            'version' => $version
+        ];
 
         return response($response, 200);
     }
