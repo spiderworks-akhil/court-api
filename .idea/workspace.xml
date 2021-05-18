@@ -7,7 +7,6 @@
     <list default="true" id="c3b67540-02d1-46a6-b9d8-fd8bdf3d2e6c" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/CourtController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/CourtController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,7 +23,7 @@
       <file leaf-file-name="api.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
+            <state relative-caret-position="442">
               <caret line="30" column="27" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="27" />
               <folding>
                 <element signature="e#7#35#0#PHP" expanded="true" />
@@ -36,8 +35,8 @@
       <file leaf-file-name="CourtController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/CourtController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-124">
-              <caret line="75" column="58" selection-start-line="75" selection-start-column="58" selection-end-line="75" selection-end-column="58" />
+            <state relative-caret-position="564">
+              <caret line="563" column="8" selection-start-line="563" selection-start-column="8" selection-end-line="563" selection-end-column="8" />
               <folding>
                 <element signature="e#44#80#0#PHP" expanded="true" />
               </folding>
@@ -102,8 +101,8 @@
       <file leaf-file-name="Booking.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Models/Booking.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="22" column="50" selection-start-line="22" selection-start-column="50" selection-end-line="22" selection-end-column="50" />
+            <state relative-caret-position="340">
+              <caret line="21" column="24" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -141,6 +140,7 @@
       <find>-&gt;with(</find>
       <find>my boo</find>
       <find>court_slots</find>
+      <find>my_b</find>
     </findStrings>
     <replaceStrings>
       <replace>status</replace>
@@ -448,6 +448,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/xampp/htdocs/court/app/Http/Controllers/Api/UserController.php" />
+    <property name="ToolWindowVersion Control.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -499,7 +500,10 @@
       <workItem from="1620799005396" duration="3255000" />
       <workItem from="1620958467365" duration="780000" />
       <workItem from="1620966223450" duration="2955000" />
-      <workItem from="1621000991909" duration="792000" />
+      <workItem from="1621000991909" duration="1404000" />
+      <workItem from="1621224083974" duration="181000" />
+      <workItem from="1621317248715" duration="1929000" />
+      <workItem from="1621334319312" duration="165000" />
     </task>
     <task id="LOCAL-00001" summary="Login issue fixed">
       <created>1619759020129</created>
@@ -739,11 +743,18 @@
       <option name="project" value="LOCAL" />
       <updated>1620975165116</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Api modifications">
+      <created>1621001904304</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1621001904304</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77653000" />
+    <option name="totallyTimeSpent" value="80540000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -761,11 +772,11 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32897604" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32897604" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.43137255" />
       <window_info id="npm" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32135075" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.090618335" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32135075" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11727079" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -819,7 +830,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/Api/CourtController.php</url>
-          <line>569</line>
+          <line>576</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
@@ -1138,13 +1149,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Booking.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="22" column="50" selection-start-line="22" selection-start-column="50" selection-end-line="22" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1161,7 +1165,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
+        <state relative-caret-position="442">
           <caret line="30" column="27" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="27" />
           <folding>
             <element signature="e#7#35#0#PHP" expanded="true" />
@@ -1169,10 +1173,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Booking.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="21" column="24" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/CourtController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-124">
-          <caret line="75" column="58" selection-start-line="75" selection-start-column="58" selection-end-line="75" selection-end-column="58" />
+        <state relative-caret-position="564">
+          <caret line="563" column="8" selection-start-line="563" selection-start-column="8" selection-end-line="563" selection-end-column="8" />
           <folding>
             <element signature="e#44#80#0#PHP" expanded="true" />
           </folding>

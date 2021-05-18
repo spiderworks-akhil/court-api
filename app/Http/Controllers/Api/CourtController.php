@@ -553,9 +553,16 @@ return response($response, 200);
         $booking->approved_by = $user->id;
         $booking->save();
 
-        if($booking->status == 0 && !empty($user->firebase_token)){
-         return   $this->send_notification($user->firebase_token,'Oh.. Your booking is cancelled','Something happened. please try again later');
+
+        if($booking->status == 0){
+            SlotHistory::where('booking_id',$booking->id)->delete();
         }
+
+
+        if($booking->status == 0 && !empty($booking->user)){
+                return   $this->send_notification($booking->user->firebase_token,'Oh.. Your booking is cancelled','Something happened. please try again later');
+        }
+
 
         $response = [
             'status' => true,
@@ -614,12 +621,12 @@ return response($response, 200);
 
         $version = new Version();
         $version->type = $request->type;
-        $version->version = $request->version;
+        $version->version = floatval($request->version);
         $version->save();
 
         $response = [
             'status' => true,
-            'version' => $version
+            'version' => $version->version
         ];
 
         return response($response, 200);
