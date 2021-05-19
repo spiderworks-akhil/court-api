@@ -560,7 +560,7 @@ return response($response, 200);
 
 
         if($booking->status == 0 && !empty($booking->user)){
-                return   $this->send_notification($booking->user->firebase_token,'Oh.. Your booking is cancelled','Something happened. please try again later');
+            $this->send_notification($booking->user->firebase_token,'Oh.. Your booking is cancelled','Something happened. please try again later');
         }
 
 
