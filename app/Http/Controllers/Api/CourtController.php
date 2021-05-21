@@ -76,6 +76,9 @@ class CourtController extends Controller
             $item->slot_time = $item->from.' - '.$item->to;
             if(!empty($holiday)){
                 $item->is_slot_open = $holiday->is_business_open;
+
+            }else{
+
             }
 
             $slot_check = SlotHistory::where('court_id',$court_id)->where('slot',$item->slot_number)->where('date',$date)->first();
@@ -85,6 +88,12 @@ class CourtController extends Controller
             return $item;
         });
 
+        if(!empty($holiday)){
+            $hol = true;
+        }else{
+            $hol = false;
+        }
+
 
         $slot_status = [
           1=>'available',
@@ -93,6 +102,7 @@ class CourtController extends Controller
         $response = [
             'status' => true,
             'holiday' => $holiday,
+            'is_holiday'=> $hol,
             'day' => $d,
             'court' => $court,
             'data' => $slots,
