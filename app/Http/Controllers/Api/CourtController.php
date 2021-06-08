@@ -643,4 +643,30 @@ return response($response, 200);
     }
 
 
+    public function set_holiday(Request $request){
+        $user = $request->user();
+//        if($user->is_Admin !== 1){
+//            $response = [
+//                'status' => false,
+//                'message' => 'Access denied'
+//            ];
+//            return response($response, 403);
+//        }
+        $holiday = new Holiday;
+        $data = $request->all();
+
+        $validated = $request->validate([
+            'date' => 'required|date',
+        ]);
+
+        $holiday->fill($data);
+        $holiday->save($data);
+        $response = [
+            'data' => $holiday,
+            'status' => true
+        ];
+        return response($response, 200);
+    }
+
+
 }
