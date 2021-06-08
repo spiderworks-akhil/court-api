@@ -668,5 +668,23 @@ return response($response, 200);
         return response($response, 200);
     }
 
+    public function get_holiday(Request $request){
+        $user = $request->user();
+//        if($user->is_Admin !== 1){
+//            $response = [
+//                'status' => false,
+//                'message' => 'Access denied'
+//            ];
+//            return response($response, 403);
+//        }
+        $holiday = Holiday::paginate(10);
+        $response = [
+            'data' => $holiday,
+            'status' => true
+        ];
+        return response($response, 200);
+    }
+
+
 
 }
